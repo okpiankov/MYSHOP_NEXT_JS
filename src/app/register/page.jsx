@@ -5,6 +5,20 @@ import { validateEmail, validateName, validatePassword, validateTel } from './va
 
 export const RegisterPage = ({ setForm }) => {
   // export default function RegisterPage ({ setForm }) {
+
+  const [registration, setRegistration] = useState({
+    user: {
+      data: {
+        avatar: '',
+        email: '',
+        fullName: '',
+        id: null,
+        role: '',
+      },
+      token: '',
+    },
+  })
+
   const [formData, setFormData] = useState({
     fullName: '',
     email: '',
@@ -53,14 +67,17 @@ export const RegisterPage = ({ setForm }) => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(res);
-      console.log(data);
+      // console.log(res);
+      // console.log(data);
+
+      setRegistration(data)
     };
     fetchData();
   };
 
   return (
     <div className={styles.authWrap}>
+    {registration.token && <div className={styles.registration}>Вы зарегистрированны!</div>}
       <div>
         <button className={styles.selectАctive} onClick={() => setForm('login')}>
           Вход /{' '}

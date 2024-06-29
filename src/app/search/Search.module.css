@@ -6,6 +6,7 @@
     border-radius: 15px;
     display: flex;
     align-items: center;
+    margin-top: 20px;
     padding-right: 3px;
 }
 .search {
@@ -43,6 +44,7 @@
     .formWrap {
         width: auto;
         height: 40px;
+        margin-top: 15px;
     }
     .search {
         height: 40px;

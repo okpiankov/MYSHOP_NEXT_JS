@@ -4,9 +4,9 @@ import Link from 'next/link';
 // import { NavLink } from 'react-router-dom';
 // import { ROUTES } from '../../router/routes';
 import styles from './ProductCard.module.css';
-import { handleAddItem } from '../../services/localStorage';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getCart, productActions } from '../../store/basket/slice';
+// import { handleAddItem } from '../../services/localStorage';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCart, productActions } from '../../store/basket/slice';
 
 // export const ProductCard = () => {
   export default function ProductCard () {
@@ -22,6 +22,33 @@ import { handleAddItem } from '../../services/localStorage';
       .finally(() => setIsLoading(false));
   }, []);
 
+// Запись данных карточек товаров в Redux:
+const dispatch = useDispatch();
+// Получаю для проверки из Redux  массив товаров для проверки
+const prevArrayItems = useSelector(getCart); 
+
+const handleAddItem = id => {
+  // Ищу продукт по id  в массиве всех продуктов
+  const productID = products.find(item => item.id === id);
+
+  // Проверяю и записываю ЕДИНОЖДЫ в Redux  массив с объектом найденным по id
+  if (!prevArrayItems) {
+    const item = [{ ...productID, quantity: 1 }];
+    dispatch(productActions.setCart(item));
+    return;
+  }
+
+  // Проверяю есть ли такой же объект в массиве по id
+  const ItemInPrevArray = prevArrayItems.find(item => item.id === id);
+  // console.log(ItemInPrevArray);
+
+  if (ItemInPrevArray) {
+    return;
+  }
+  // Дозаписываю  в  Redux объект которого нет в  Redux по id через {...productID}
+  const item = [...prevArrayItems, { ...productID, quantity: 1 }];
+  dispatch(productActions.setCart(item));
+};
   
   return (
     <>
@@ -36,15 +63,15 @@ import { handleAddItem } from '../../services/localStorage';
                 <strong>{name}</strong>
                 <span className={styles.center}>{description}</span>
                 <span>
-                  <strong>{price} P</strong>
+                  <strong>{price} руб.</strong>
                 </span>
                 </Link>
               {/* Передаю параметр  id в обработчик события */}
-              <button className={isLoading===true ? styles.isLoadingButton : styles.button} onClick={() => handleAddItem(id, products)}>
-              {/* <button
+              {/* <button className={isLoading===true ? styles.isLoadingButton : styles.button} onClick={() => handleAddItem(id, products)}> */}
+              <button
                 className={isLoading === true ? styles.isLoadingButton : styles.button}
                 onClick={() => handleAddItem(id)}
-              > */}
+              >
                 Добавить в корзину
               </button>
             </div>

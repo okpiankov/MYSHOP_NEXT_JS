@@ -1,6 +1,5 @@
 import styles from "./CabinetPage.module.css";
 
-// export const СabinetPage = () => {
 export default function HomeUser() {
   return (
     <div className={styles.cabinetPageWrap}>

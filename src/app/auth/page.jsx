@@ -1,63 +1,69 @@
-'use client'
-import { useState } from 'react';
-import styles from './AuthPage.module.css';
-import { validateEmail, validatePassword } from './validate';
+"use client";
+import { useState } from "react";
+import styles from "./AuthPage.module.css";
+import { validateEmail, validatePassword } from "./validate";
 // import { Navigate, redirect, useNavigate } from 'react-router-dom';
-import { useRouter } from 'next/navigation'
-// import { ROUTES } from '../../router/routes';
+import { useRouter } from "next/navigation";
+import { userActions, getUserToken, getUser } from "../../store/user/slice";
+import { useDispatch } from "react-redux";
 
 export const AuthPage = ({ setForm }) => {
   // export default function AuthPage ({ setForm }) {
   // const navigate = useNavigate();
-  const router = useRouter() 
+  const router = useRouter();
+  const dispatch = useDispatch();
 
   const [formData, setFormData] = useState({
-    email: '',
-    password: '123',
+    email: "",
+    password: "123",
   });
 
-  const [emailError, setEmailError] = useState('');
-  const [passwordError, setPasswordError] = useState('');
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
 
-  const handleChange = event => {
+  const handleChange = (event) => {
     // console.log(event.target.value);
     const { name, value } = event.target;
-    setFormData(prevState => ({
+    setFormData((prevState) => ({
       ...prevState,
       [name]: value,
     }));
 
-    if (name === 'email' && value !== ' ') {
+    if (name === "email" && value !== " ") {
       validateEmail(value, setEmailError);
     }
-    if (name === 'password' && value !== ' ') {
+    if (name === "password" && value !== " ") {
       validatePassword(value, setPasswordError);
     }
   };
 
-  const handleSubmit = event => {
+  // Запись  user в redux:
+  const handleSubmit = (event) => {
     event.preventDefault();
 
-    fetch('https://8a705e193c725f80.mokky.dev/auth', {
-      method: 'POST',
+    fetch("https://8a705e193c725f80.mokky.dev/auth", {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
       body: JSON.stringify(formData),
     })
-      .then(res => res.json())
-      .then(res => {
-        localStorage.setItem('user', JSON.stringify(res));
-        
+      .then((res) => res.json())
+      .then((userData) => {
+        dispatch(userActions.setUser(userData));
+        // console.log(userData);
+
         const {
           token,
           data: { role },
-        } = res;
+        } = userData;
 
-        if (token && role === 'client') router.push('/cabinet');
-        if (token && role === 'admin') router.push('/admin');
-      });
+        if (token && role === "client") router.push("/cabinet");
+        if (token && role === "admin") router.push("/admin");
+      })
+      .catch((error) => console.error(error))
+      .finally(() => dispatch(userActions.setIsLoading(false)));
   };
 
   return (
@@ -65,8 +71,11 @@ export const AuthPage = ({ setForm }) => {
       <div>
         <span className={styles.select}>Вход</span>
         {/* В setForm можно передавать любую строку например: 'register' */}
-        <button className={styles.selectАctive} onClick={() => setForm('register')}>
-          / Регистрация{' '}
+        <button
+          className={styles.selectАctive}
+          onClick={() => setForm("register")}
+        >
+          / Регистрация{" "}
         </button>
       </div>
 
@@ -97,6 +106,32 @@ export const AuthPage = ({ setForm }) => {
     </div>
   );
 };
+
+// // Запись  user  в localStorage:
+// const handleSubmit = event => {
+//   event.preventDefault();
+
+//   fetch('https://8a705e193c725f80.mokky.dev/auth', {
+//     method: 'POST',
+//     headers: {
+//       Accept: 'application/json',
+//       'Content-Type': 'application/json',
+//     },
+//     body: JSON.stringify(formData),
+//   })
+//     .then(res => res.json())
+//     .then(res => {
+//       localStorage.setItem('user', JSON.stringify(res));
+
+//       const {
+//         token,
+//         data: { role },
+//       } = res;
+
+//       if (token && role === 'client') router.push('/cabinet');
+//       if (token && role === 'admin') router.push('/admin');
+//     });
+// };
 
 // // Тип данных в State и setState д/б одинаковый
 // const [emailError, setEmailError] = useState('');

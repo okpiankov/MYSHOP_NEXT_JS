@@ -1,19 +1,24 @@
 "use client";
+
 import Link from "next/link";
 import styles from "./Header.module.css";
-import { usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
+import { userActions } from "@/store/user/slice";
+import { useDispatch } from "react-redux";
 
 export const HeaderMenuAdmin = () => {
   const path = usePathname();
   const router = useRouter();
-  // const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   //Функция выхода из авторизации
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    // dispatch(userActions.clearUserStore());
+    dispatch(userActions.clearUserStore());
+    // setPopUpAuth(false);
+
     if (path.includes("/admin")) {
-      router.push("/");
+      redirect("/");
+      // router.push("/");
     }
   };
 

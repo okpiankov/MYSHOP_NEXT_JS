@@ -5,11 +5,14 @@ import { LeftMenu } from "../../components/LeftMenuLK/LeftMenu";
 import { redirect } from "next/navigation";
 import { useState } from "react";
 import styles from "./Container.module.css";
+import { getUser } from "../../store/user/slice";
+import { useSelector } from "react-redux";
 
 export default function LayoutUser({ children }) {
-  // объект user нужно получать из глобального состояния типа: редакс или контекст:
-  const user = JSON.parse(localStorage.getItem("user"));
+  // // объект user нужно получать из глобального состояния типа: редакс или контекст:
+  // const user = JSON.parse(localStorage.getItem("user"));
   // const [popUpAuth, setPopUpAuth] = useState(false);
+  const user = useSelector(getUser);
 
   // Имитация закрытого роутинга
   if (user?.data.role !== "client") {

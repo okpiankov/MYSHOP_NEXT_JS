@@ -5,16 +5,16 @@ import MenuIcon from "../../../public/icons/menu2.svg";
 import TelIcon from "../../../public/icons/tel.svg";
 import UserIcon from "../../../public/icons/user1.svg";
 import Link from "next/link";
-import { usePathname, useRouter } from "next/navigation";
+import { redirect, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import DeliveryIcon from "../../../public/icons/delivery2.svg";
 import HomeIcon from "../../../public/icons/home1.svg";
 import PayIcon from "../../../public/icons/pay2.svg";
 import { Search } from "../../app/search/Search";
 import styles from "./Header.module.css";
-// import { useSelector, useDispatch } from 'react-redux';
-// import { userActions, getUser } from '../../store/user/slice';
-// import { getCart } from '../../store/basket/slice';
+import { useSelector, useDispatch } from 'react-redux';
+import { userActions, getUser } from '../../store/user/slice';
+import { getCart } from '../../store/basket/slice';
 
 export const HeaderMenu = ({
   setPopUpAuth,
@@ -30,27 +30,38 @@ export const HeaderMenu = ({
   // const navigate = useNavigate();
   // const { pathname } = useLocation();
   const router = useRouter();
-  const path = usePathname(); 
+  const path = usePathname();
+  const dispatch = useDispatch(); 
 
-  //user - это состояние страницы (это не объект из LS)  обрабатываю через useState+useEffect
+  //user - это состояние страницы (это не объект из Redux), объект  обрабатываю через useState+useEffect
   const [user, setUser] = useState({});
 
-  useEffect(() => {
-    // const userLS = JSON.parse(localStorage.getItem('user'));
-    // setUser(userLS);
-    setUser(userData);
-  }, [userData]);
+ //Подписка на user из Redux
+ const userRedux = useSelector(getUser);
+ // console.log( userRedux)
+ useEffect(() => {
+   setUser(userRedux);
+ }, [userRedux]);
+
+  // //Подписка на user из localStorage
+  // useEffect(() => {
+  //   // const userLS = JSON.parse(localStorage.getItem('user'));
+  //   // setUser(userLS);
+  //   setUser(userData);
+  // }, [userData]);
 
   // Функция проверки роли, редиректа и смены состояния PopUp
   const handleUserClick = () => {
     if (user?.data?.role === "client") {
       router.push("/cabinet");
+      // redirect("/cabinet");
       // navigate('/cabinet');
       return;
     }
 
     if (user?.data?.role === "admin") {
       router.push("/admin");
+      // redirect("/admin");
       // navigate('/admin');
       return;
     }
@@ -60,17 +71,21 @@ export const HeaderMenu = ({
 
   //Функция выхода из авторизации
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    setUser((prev) => {});
+    // localStorage.removeItem("user");
+    // setUser((prev) => {});
+    
+    dispatch(userActions.clearUserStore());
     // Чтобы не рендерился попап при выходе из кабинета:
     setPopUpAuth(false);
 
     if (path.includes("/admin") || path.includes("/cabinet")) {
-      router.push("/");
+      redirect("/"); 
+      // router.push("/"); 
     }
   };
   //Получаю значение счетчика корзины
-  const count = JSON.parse(localStorage.getItem("itemCart"))?.length;
+  // const count = JSON.parse(localStorage.getItem("itemCart"))?.length;
+  const count = useSelector(getCart)?.length;
 
   return (
     <>

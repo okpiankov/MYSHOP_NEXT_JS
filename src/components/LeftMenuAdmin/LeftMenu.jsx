@@ -3,27 +3,47 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import styles from "./LeftMenu.module.css";
+import { getUser } from '../../store/user/slice';
+import { useSelector } from 'react-redux';
 
 export const LeftMenuAdmin = () => {
   const [avatar, setAvatar] = useState("");
 
-  useEffect(() => {
-    const user = JSON.parse(localStorage.getItem("user"));
+    //Подписка на user из Redux
+    const userRedux = useSelector(getUser);
+    useEffect(() => {
+      if (!userRedux) {
+        return;
+      }
+      const {
+        data: { role, avatar, fullName },
+      } = userRedux;
+  
+      if (role === 'admin') {
+        setAvatar(avatar);
+      } else {
+        return;
+      }
+    }, [userRedux]);
 
-    if (!user) {
-      return;
-    }
+  //Подписка на user из localStorage
+  // useEffect(() => {
+  //   const user = JSON.parse(localStorage.getItem("user"));
 
-    const {
-      data: { role, avatar },
-    } = user;
+  //   if (!user) {
+  //     return;
+  //   }
 
-    if (role === "admin") {
-      setAvatar(avatar);
-    } else {
-      return;
-    }
-  }, []);
+  //   const {
+  //     data: { role, avatar },
+  //   } = user;
+
+  //   if (role === "admin") {
+  //     setAvatar(avatar);
+  //   } else {
+  //     return;
+  //   }
+  // }, []);
 
   return (
     <nav className={styles.leftMenuWrap}>

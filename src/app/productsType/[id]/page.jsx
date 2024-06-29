@@ -2,9 +2,9 @@
 import { useEffect, useState } from 'react';
 // import { useParams } from 'react-router-dom';
 import styles from './ProductCardID.module.css';
-import {handleAddItemId} from '../../../services/localStorage';
-// import { useDispatch, useSelector } from 'react-redux';
-// import { getCart, productActions } from '../../store/basket/slice';
+// import {handleAddItemId} from '../../../services/localStorage';
+import { useDispatch, useSelector } from 'react-redux';
+import { getCart, productActions } from '../../../store/basket/slice';
 
   export default function ProductCardID (data) {
   const [product, setProduct] = useState({});
@@ -24,7 +24,29 @@ import {handleAddItemId} from '../../../services/localStorage';
     fetchData();
   }, [id]);
 
+// Запись данных карточек товаров в Redux:
+const dispatch = useDispatch();
+const prevArrayItems = useSelector(getCart);
+// console.log(prevArrayItems);
 
+const handleAddItemId = () => {
+  if (!prevArrayItems) {
+    const item = [{ ...product, quantity: 1 }];
+
+    dispatch(productActions.setCart(item));
+    return;
+  }
+  // console.log(prevArrayItems);
+
+  const ItemInPrevArray = prevArrayItems.find(item => item.id === product.id);
+  // console.log(ItemInPrevArray);
+
+  if (ItemInPrevArray) {
+    return;
+  }
+  const item = [...prevArrayItems, { ...product, quantity: 1 }];
+  dispatch(productActions.setCart(item));
+};
   return (
     <div className={styles.productsWrap}>
       <div className={styles.cardWrapID}>
@@ -44,10 +66,10 @@ import {handleAddItemId} from '../../../services/localStorage';
           </p>
 
           <span> Цена:</span>
-          <strong className={styles.price}>{product.price} P</strong>
+          <strong className={styles.price}>{product.price} руб.</strong>
 
-          <button className={styles.button} onClick={() => handleAddItemId(product)}>
-          {/* <button className={styles.button} onClick={handleAddItemId}> */}
+          {/* <button className={styles.button} onClick={() => handleAddItemId(product)}> */}
+          <button className={styles.button} onClick={handleAddItemId}>
             Добавить в корзину
           </button>
         </div>
