@@ -4,8 +4,7 @@ import styles from './RegisterPage.module.css';
 import { validateEmail, validateName, validatePassword, validateTel } from './validate';
 
 export const RegisterPage = ({ setForm }) => {
-  // export default function RegisterPage ({ setForm }) {
-
+  
   const [registration, setRegistration] = useState({
     user: {
       data: {
@@ -108,7 +107,7 @@ export const RegisterPage = ({ setForm }) => {
           onChange={handleChange}
           placeholder="Email*"
           required
-          autoComplete="off"
+          // autoComplete="off"
         ></input>
 
         {passwordError && passwordError}
@@ -120,7 +119,7 @@ export const RegisterPage = ({ setForm }) => {
           onChange={handleChange}
           placeholder="Придумайте пароль*"
           required
-          autoComplete="off"
+          // autoComplete="off"
         ></input>
 
         {telError && telError}

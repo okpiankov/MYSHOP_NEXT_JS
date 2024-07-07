@@ -58,20 +58,20 @@ export default function OrdersPage() {
 
               <div className={styles.details}>
                 <p>
-                  <strong>Сумма:</strong> {order.total_price?.toLocaleString()}{" "}
+                  <strong>Сумма:</strong><br></br> {order.total_price?.toLocaleString()}{" "}
                   руб.
                 </p>
                 <p>
-                  <strong>Кол-во товаров:</strong> {order.goods?.length}
+                  <strong>Кол-во товаров:</strong><br></br> {order.goods?.length}
                 </p>
                 <p>
-                  <strong>Телефон:</strong> {order?.tel}
+                  <strong>Телефон:</strong><br></br> {order?.tel}
                 </p>
                 <p>
-                  <strong>Доставка:</strong> {order?.delivery}
+                  <strong>Доставка:</strong><br></br> {order?.delivery}
                 </p>
                 <p>
-                  <strong>Оплата:</strong> {order?.pay}
+                  <strong>Оплата:</strong><br></br> {order?.pay}
                 </p>
 
                 <button

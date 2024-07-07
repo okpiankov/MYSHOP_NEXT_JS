@@ -1,7 +1,7 @@
 'use client'
 import { useState } from 'react';
-import { AuthPage } from '../../app/auth/page';
-import { RegisterPage } from '../../app/register/page';
+import { AuthPage } from '../../components/auth/AuthPage';
+import { RegisterPage } from '../../components/auth/RegisterPage';
 
 
 export const Form = () => {

@@ -25,6 +25,6 @@ export default function LayoutAdmin({ children }) {
         <div className={styles.children}>{children}</div>
       </div>
       <FooterAdmin /> 
-    </div>
+    </div> 
   );
 }

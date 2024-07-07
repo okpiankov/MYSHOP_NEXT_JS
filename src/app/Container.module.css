@@ -1,6 +1,7 @@
 .mainWrap {
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
+  
 }
 .container {
   width: 90%;
@@ -14,12 +15,14 @@
   grid-template-rows: auto;
   /* background-color: rgb(127, 255, 127); */
   height: 100%;
+
 }
 .children {
   /* background-color: rgb(127, 255, 127); */
   /* margin-top: 3px; */
   height: 100%;
   width: 100%;
+ 
 }
 .innerWrapTrue {
   display: grid;

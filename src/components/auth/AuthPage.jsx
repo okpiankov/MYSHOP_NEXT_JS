@@ -8,7 +8,6 @@ import { userActions, getUserToken, getUser } from "../../store/user/slice";
 import { useDispatch } from "react-redux";
 
 export const AuthPage = ({ setForm }) => {
-  // export default function AuthPage ({ setForm }) {
   // const navigate = useNavigate();
   const router = useRouter();
   const dispatch = useDispatch();
