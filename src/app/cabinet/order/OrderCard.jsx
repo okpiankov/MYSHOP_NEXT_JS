@@ -18,7 +18,7 @@ export const OrderCard = ({ fullName, email, tel, delivery, id, goods, totalPric
               <li key={item.id}>{item.name}</li>
             ))}
           </ul>
-          <div className={styles.text}>оплачено {totalPrice} Р </div>
+          <div className={styles.text}>оплачено {totalPrice} руб.</div>
         </div>
       </div>
       <div className={styles.contentBox2}>

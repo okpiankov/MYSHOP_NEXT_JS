@@ -1,12 +1,8 @@
 .mainWrap {
     display: flex;
     flex-direction: column;
-
 }
 .container {
-    /* width: 1140px;
-    margin: 0 auto;*/
-    /* Лучше для адаптации через фикс. или %? */
     width: 100%;
     max-width: 1440px;
     margin: 0 auto;
@@ -20,26 +16,10 @@
     /* display: flex; */
   
 }
-.mainContentWrap {
-    /* flex: 1; */
-    background-color: rgb(127, 255, 127);
-    margin-top: 4px;
-    margin-left: 4px;
-    height: 100%;
-}
-
 .innerWrapTrue {
     grid-template-columns: 150px auto;
     grid-template-rows: auto auto;
 }
-/* .children {
-    background-color: rgb(127, 255, 127);
-    margin-top: 4px;
-    margin-bottom: 4px;
-    margin-left: 4px;
-    height: 100%;
-    width: 100%;
-  } */
 
 @media (max-width: 991px) {
     .innerWrap {
@@ -50,4 +30,14 @@
       
     }
 
-} 
+}
+/* .children {
+    background-color: rgb(127, 255, 127);
+    margin-top: 4px;
+    margin-bottom: 4px;
+    margin-left: 4px;
+    height: 100%;
+    width: 100%;
+  } */
+
+

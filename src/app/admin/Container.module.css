@@ -20,13 +20,6 @@
     grid-template-rows: auto;
       
 }
-.mainContentWrap {
-    background-color: rgb(77, 255, 77);
-    margin-top: 4px;
-    margin-left: 4px;
-    height: 100%;
-    
-}
 .children {
     background-color: rgb(127, 255, 127);
     margin-top: 4px;

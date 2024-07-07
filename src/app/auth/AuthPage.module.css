@@ -77,10 +77,14 @@
         width: 230px;
     }
     .buttonSubmit {
-        font-size: 22px;
+        font-size: 20px;
+        width: 130px;
     }
     .input {
         font-size: 18px;
+    }
+    .select, .selectАctive {
+        font-size: 23px;
     }
     
 } 

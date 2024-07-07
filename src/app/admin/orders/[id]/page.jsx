@@ -54,7 +54,7 @@ export default function OrderItemPage({ params: { id } }) {
     setOrder((prevState) => ({
       ...prevState,
       total_price: newGoodsList.reduce((acc, curr) => {
-        return acc + curr.quantity * +curr.price;
+        return acc + +curr.quantity * +curr.price;
       }, 0),
       goods: newGoodsList,
     }));

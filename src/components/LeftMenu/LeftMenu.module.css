@@ -68,6 +68,7 @@
     border-radius: 10px;
     box-shadow: inset 3px -3px 2px var(--background-color-contentLarge),
     inset 3px 3px 2px var(--background-color-contentLarge);
+    width: 100%;
 }
 .popUpMenu .all{
 
@@ -86,8 +87,11 @@
     .popUpMenu:hover {
         transform: translateX(120px);
     }
+     /* .phone,.laptop,.tv,.all {
+        width: 120px;
+    } */
 }
-@media (max-width: 360px) {
+@media (max-width: 430px) {
     /* .popUpMenu {  
         top: 132px;
     } */
@@ -102,5 +106,9 @@
     }
     .link:hover {
         transform: none;
+        transform: scale(1.0);
+    }
+    .phone,.laptop,.tv,.all {
+        width: 120px;
     }
 }

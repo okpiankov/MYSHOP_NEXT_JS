@@ -12,7 +12,7 @@ export const Footer = () => {
           <p>
             Интернет-магазин<br></br>
             Используемые технологии при разработке:<br></br>
-            html, css, JavaScript, React,  NextJS, Redux, TypeScript
+            html, css, JavaScript, React,  NextJS, Redux
           </p>
           <p>
             Автор:<br></br>

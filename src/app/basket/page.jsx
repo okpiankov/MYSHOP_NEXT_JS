@@ -76,7 +76,12 @@ export default function BasketPage() {
     });
   
     //Формирую массив из объектов в которых присутствуют только необходимые поля
-    const arrayProducts = items.map(item => ({ id: item.id, name: item.name, quantity: item.quantity }));
+    const arrayProducts = items.map(item => ({
+      id: item.id,
+      name: item.name,
+      quantity: item.quantity,
+      price: item.price,
+    }));
     // console.log(arrayProducts);
     //arrayOrder(заказ) это объект не массив
     const arrayOrder = {

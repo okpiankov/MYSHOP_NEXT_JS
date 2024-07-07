@@ -12,11 +12,12 @@
   display: grid;
   grid-template-columns: 150px auto;
   grid-template-rows: auto;
-  background-color: rgb(127, 255, 127);
+  /* background-color: rgb(127, 255, 127); */
   height: 100%;
 }
 .children {
-  background-color: rgb(127, 255, 127);
+  /* background-color: rgb(127, 255, 127); */
+  /* margin-top: 3px; */
   height: 100%;
   width: 100%;
 }

@@ -19,6 +19,7 @@
     justify-content:space-between;
     /* gap: 10px; */
     text-decoration: none;
+    font-family: 'Times New Roman', Times, serif;
 }
 .image {
     height: 255px;

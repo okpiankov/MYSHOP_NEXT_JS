@@ -1,9 +1,16 @@
 :root {
-  --background-color-contentLight: rgb(235, 235, 235);
+   --background-color-contentLight: rgb(235, 235, 235);
   --background-color-contentMedium: rgb(187, 187, 187);
   --background-color-contentLarge: rgb(120, 120, 120);
   --box-shadow-content: 3px 3px 3px grey;
   --border-content: 2px rgb(120, 120, 120) solid;
+  
+  /* --background-color-contentLight: rgb(255, 201, 241);
+  --background-color-contentMedium:  rgb(235, 92, 223);
+  --background-color-contentLarge: rgb(145, 26, 200);
+  --box-shadow-content: 3px 3px 3px rgb(145, 26, 200);
+  --border-content: 2px  rgb(145, 26, 200) solid; */
+
   /* --background-color: ;
     --button-background-color: ;
     --button-background-color-hover: ;

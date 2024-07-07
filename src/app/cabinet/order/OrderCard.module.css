@@ -5,7 +5,8 @@
     flex-direction: column;
     background-color: var(--background-color-contentMedium);
     border: var(--border-content);
-    border-radius: 20px; 
+    border-radius: 20px;
+    margin-bottom: 10px; 
 }
 
 .contentBox1 {
@@ -62,7 +63,7 @@
 }
 .status {
     height: 22px;
-    width: 200px;
+    width: 220px;
     background-color: var(--background-color-contentLarge);
     border-radius: 10px;
     color: white;

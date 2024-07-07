@@ -316,7 +316,8 @@
   }
   .buttonLogout {
     height: 35px;
-    width: 63px;
+    width: 70px;
+    font-size: 19px;
   }
 
 }
