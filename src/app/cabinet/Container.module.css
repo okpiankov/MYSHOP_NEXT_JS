@@ -13,7 +13,6 @@
     display: grid;
     grid-template-columns: 150px auto;
     grid-template-rows: auto auto;
-    /* display: flex; */
   
 }
 .innerWrapTrue {
@@ -26,8 +25,7 @@
         display: grid;
         grid-template-columns: 120px auto;
         grid-template-rows: auto auto;
-        /* display: flex; */
-      
+        
     }
 
 }

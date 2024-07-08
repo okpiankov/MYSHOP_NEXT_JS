@@ -54,7 +54,7 @@ export const LeftMenu = () => {
       <div className={styles.user}>{fullName}</div>
 
       <Link href="/cabinet/personalData" className={styles.link}>
-        Личная информация
+        Личные данные
       </Link>
 
       <Link href="/cabinet/basket" className={styles.link}>

@@ -51,8 +51,11 @@
         width: 120px;
         
     }
-    
-    
 } 
+@media (max-width: 430px) {
+    .link {
+        font-size: 19px;
+    }
+}
 
 

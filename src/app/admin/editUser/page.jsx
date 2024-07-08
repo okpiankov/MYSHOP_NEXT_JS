@@ -7,7 +7,7 @@ import { useState } from 'react';
   const [formData, setFormData] = useState({
     id: '',
     fullName: '',
-    role: '',
+    role: 'client',
     email: '',
     password: '',
     avatar: '',
@@ -65,15 +65,6 @@ import { useState } from 'react';
           <input
             className={styles.input}
             type="text"
-            value={formData.role}
-            name="role"
-            onChange={handleChange}
-            placeholder="Введите роль: client"
-          ></input>
-
-          <input
-            className={styles.input}
-            type="text"
             value={formData.email}
             name="email"
             onChange={handleChange}
@@ -115,7 +106,6 @@ import { useState } from 'react';
       <div className={styles.patternWrap}>
       <span>Скопируйте пример данных отсюда:</span>
         <span>имя пользователя: Владимир</span>
-        <span>роль: client</span>
         <span>email: newuser@test.com</span>
         <span>пароль: 1234</span>
         <span>аватар: https://img.freepik.com/free-photo/view-funny-animal_23-2151098397.jpg</span>

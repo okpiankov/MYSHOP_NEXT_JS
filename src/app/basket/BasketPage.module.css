@@ -57,8 +57,8 @@
 }
 .input {
     background-color: var(--background-color-contentLight);
-    height: 30px;
-    width: 390px;
+    height: 36px;
+    width: 400px;
     border: 2px var(--background-color-contentLarge) solid;
     outline:none;
     border-radius: 10px;
@@ -68,7 +68,7 @@
 .select {
     background-color: var(--background-color-contentLight);
     height: 36px;
-    width: 398px;
+    width: 400px;
     border: 2px var(--background-color-contentLarge) solid;
     outline:none;
     border-radius: 10px;
@@ -143,12 +143,12 @@
         width: 250px;
     }
     .input {
-        width: 222px;
-        font-size: 19px; 
+        width: 230px;
+        font-size: 17px; 
     }
     .select {
         width: 230px;
-        font-size: 19px; 
+        font-size: 17px; 
     }
     .buttonSubmit {
         width: 230px;

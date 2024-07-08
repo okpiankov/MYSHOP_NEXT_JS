@@ -46,8 +46,35 @@ export default function OrderItemPage({ params: { id } }) {
     }));
   };
 
-  const handleChangeGoodQuantity = (id) => {};
+  // Функция изменения количества товара в заказе
+  const handleChangeGoodQuantity = (event, id) => {
+    const changedGoodIdx = order.goods.findIndex((good) => good.id === id);
+    if (changedGoodIdx !== -1) {
+      const changedGood = {
+        ...order.goods[changedGoodIdx],
+        quantity: event.target.value,
+      };
+      console.log(changedGood);
+      const newGoodsList = order.goods.toSpliced(
+        changedGoodIdx,
+        1,
+        changedGood
+      );
+      console.log(newGoodsList);
+      if (event.target.value <= 0) {
+        return deleteGood(id);
+      }
+      setOrder((prevState) => ({
+        ...prevState,
+        total_price: newGoodsList.reduce((acc, curr) => {
+          return acc + +curr.quantity * +curr.price;
+        }, 0),
+        goods: newGoodsList,
+      }));
+    }
+  };
 
+  // Функция удаления товара из заказа
   const deleteGood = (id) => {
     const newGoodsList = order.goods.filter((good) => good.id !== id);
 
@@ -144,21 +171,23 @@ export default function OrderItemPage({ params: { id } }) {
           {order.goods.map((good) => (
             <li key={good.id} className={styles.order_goods}>
               <p>
-                {good.name},&nbsp;&nbsp; кол-во: {good.quantity}
+                {good.name},&nbsp;&nbsp; кол-во:{" "}
+                <strong>{good.quantity}</strong>
               </p>
-
+              <span>Введите кол-во:</span>
               <input
                 className={styles.inputQuantity}
                 type="number"
                 value={good.quantity}
                 name="quantity"
-                onChange={() => handleChangeGoodQuantity(good.id)}
-                placeholder="Количество"
+                onChange={(event) => handleChangeGoodQuantity(event, good.id)}
+                placeholder="Кол-во"
               ></input>
 
-              {/* <button className={styles.button} type="button">
+              {/* <button className={styles.button}
+              type="button" onClick={() => handleChangeGoodQuantity(good.id)}>
                 изменить_кол_во
-              </button> */}
+              </button>  */}
 
               <button
                 type="button"

@@ -110,5 +110,7 @@
     }
     .phone,.laptop,.tv,.all {
         width: 120px;
+        font-size: 19px;
+        text-indent: 5px;
     }
 }
