@@ -1,36 +1,42 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Интернет-магазин с админкой и личный кабинетом
+### Деплой: https://myshop-react-coral.vercel.app/
 
-## Getting Started
+###  Используемые технологии при разработке: html, css, JavaScript, React, NEXT_JS, Redux
+### Сервер: https://mokky.dev
 
-First, run the development server:
+### Функционал:
+- Отдельный layout для личного кабинета и админки,
+- Регистрация и авторизация, защищенные роуты, роли пользователей,
+- В админке реализованны - загрузка, редактирование и удаление товаров, пользователей, редактирование заказов. Запросы GET, POST, PATCH, DELETE,
+- Оформленные заказы в админке можно просматривать, они рендерятся ввиде списка,
+- Реализован поиск товаров на сервере,
+- Страница с оформленными заказами реализована через связь двух ресурсов /orders?_relations=users. Заказу присваивается user_id, 
+- В корзине можно изменить количество товара или удалить товар,
+- При рендеринге карточек товаров используется динамический роутинг. 2 вида карточек товаров мини и стандарт.
+- Кастомная валидация форм,
+- Форма с авторизацией и регистрацией реализованна через PopUp,
+- Модульные стили,
+- Адаптивная верстка- под планшет max-width: 991px, - под смартфон max-width: 430px,
+- Используются fetch, async/await, axios,
+- Redux Toolkit, Redux persist. Товары в корзине  и данные пользователей сохраняются в localStorage,
+- Есть возможность подключить запись напрямую в localStorage товаров в корзине  и  данных пользователей без использования Redux, Redux persist
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+### Доступ в админку:
+В админку могут попасть только пользователи с ролью админа.\
+Тестовые админские логин и пароль:\
+логин: admin@test.com\
+пароль: 123
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Доступ в личный кабинет:
+Тестовые пользовательские логин и пароль:\
+логин: user@test.com\
+пароль: 123\
+Либо зарегистрируйте своего пользователя
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Установка проекта:
+Для запуска на локальной машине необходимо:\
+Установить npm зависимости:\
+npm install\
+Запустить в режиме разработки:\
+npm run dev\
+Если все прошло успешно, проект будет запущен на http://localhost:3000
