@@ -1,5 +1,5 @@
 # Интернет-магазин с админкой и личный кабинетом
-### Деплой: https://myshop-react-coral.vercel.app/
+### Деплой: https://myshop-next-js.vercel.app/
 
 ###  Используемые технологии при разработке: html, css, JavaScript, React, NEXT_JS, Redux
 ### Сервер: https://mokky.dev
